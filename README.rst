@@ -31,6 +31,7 @@ You can use pip to install pydbgen: ``pip install pydbgen``
 Import the class
 ==================
 Import the ``pydb`` class::
+
 	from pydbgen import pydb
 	myDB=pydb()
 
