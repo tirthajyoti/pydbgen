@@ -32,8 +32,9 @@ Import the class
 ==================
 Import the ``pydb`` class::
 
-	from pydbgen import pydb
-	myDB=pydb()
+	import pydbgen
+	from pydbgen import pydbgen
+	myDB=pydbgen.pydb()
 
 Usage
 =========
