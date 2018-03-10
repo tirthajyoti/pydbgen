@@ -28,6 +28,12 @@ Installation
 =============
 You can use pip to install pydbgen: ``pip install pydbgen``
 
+Import the class
+==================
+Import the ``pydb`` class:
+	from pydbgen import pydb
+	myDB=pydb()
+
 Usage
 =========
 Current version (1.0.0) of ``pydbgen`` comes with the following primary methods,
@@ -37,9 +43,7 @@ Current version (1.0.0) of ``pydbgen`` comes with the following primary methods,
 * ``gen_table()``
 * ``gen_excel()``
 
-The ``gen_table()`` method allows you to build a database with as many tables as you want, filled with random data and fields of your choice. But first, you have to create an object of ``pydb`` class::
-
-	myDB = pydbgen.pydb()
+The ``gen_table()`` method allows you to build a database with as many tables as you want, filled with random data and fields of your choice.
 
 gen_data_series()
 ------------------
