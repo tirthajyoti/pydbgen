@@ -117,8 +117,8 @@ Customization choices are following:
 	myDB.gen_table(20,fields=['name','city','job_title','phone','company','email'],
           db_file='TestDB.db',table_name='People',primarykey='name',real_city=False)
 
-gen_excel()
-------------------
+Generate Microsoft Excel: ``gen_excel()``
+-------------------------------------------
 Attempts to create an Excel file using Pandas excel_writer function. User can specify various data types to be included. All data types (fields) in the Excel file will be of text type. Data types available:
         
 * Name, country, city, real (US) cities, US state, zipcode, latitude, longitude
