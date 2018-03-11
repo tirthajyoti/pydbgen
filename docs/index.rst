@@ -89,8 +89,8 @@ Customization choices are following:
 
 **Code example**::
 
-	testdf=myDB.gen_dataframe(25,fields='name','city','phone',
-		'license_plate','email',real_email=True,phone_simple=True)
+	testdf=myDB.gen_dataframe(25,fields=['name','city','phone',
+		'license_plate'],'email',real_email=True,phone_simple=True)
 
 gen_table()
 ------------------
