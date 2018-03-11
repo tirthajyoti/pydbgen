@@ -173,3 +173,19 @@ Few other auxilarry functions available in this package.
 	    OOD-124
 	    RXY-8865
 	    JZV-3326
+	    
+* **Phone number** in US 10-digit format::
+	
+	for _ in range(10):
+	    print(myDB.simple_ph_number())
+
+	    434-185-1888
+	    309-556-5282
+	    533-507-6620
+	    902-708-3026
+	    843-313-2855
+	    629-726-5514
+	    268-174-6968
+	    105-202-1923
+	    963-459-3015
+	    309-595-3351
