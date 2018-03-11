@@ -83,6 +83,7 @@ class pydb():
         seed: Currently not used. Uses seed from the pydb class if chosen by user
         '''
         import random
+        import os
         from random import randint,choice
         random.seed(self.seed)
 
@@ -93,7 +94,10 @@ class pydb():
         
         choice_int = choice(range(10))
         
-        path = "Domains.txt"
+         
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        print(path)
+        path = dir_path+"\Domains.txt"
         
         domain_list = []
         fh = open(path)
