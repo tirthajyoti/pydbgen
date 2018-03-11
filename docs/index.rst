@@ -110,11 +110,9 @@ Customization choices are following:
 
 ``table_name``: Name of the table, to be chosen by user. Default table name will be chosen if not specified by user.
 
-
-
 ``primarykey``: User can choose a PRIMARY KEY from among the various fields. If nothing specified, the first data field will be made PRIMARY KEY. If user chooses a field, which is not in the specified list, an error will be thrown and no table will be generated.
 
- **Code example**::
+**Code example**::
 
 	myDB.gen_table(20,fields=['name','city','job_title','phone','company','email'],
           db_file='TestDB.db',table_name='People',primarykey='name',real_city=False)
