@@ -83,7 +83,7 @@ Generates a `Pandas dataframe <https://pandas.pydata.org/pandas-docs/stable/gene
 * Company, Job title, phone number, license plate
 Customization choices are following:
 
-- ``**real_email**``: If ``TRUE`` and if a person's name is also included in the fields, a realistic email will be generated corresponding to the name of the person. For example, ``Tirtha Sarkar`` name with this choice enabled, will generate emails like ``TSarkar21@gmail.com`` or ``Sarkar.Tirtha@att.net``.
+- **real_email**: If ``TRUE`` and if a person's name is also included in the fields, a realistic email will be generated corresponding to the name of the person. For example, ``Tirtha Sarkar`` name with this choice enabled, will generate emails like ``TSarkar21@gmail.com`` or ``Sarkar.Tirtha@att.net``.
 - **real_city**: If ``TRUE``, a real US city's name will be picked up from a list (included as a text data file with the installation package). Otherwise, a fictitious city name will be generated.
 - **phone_simple**: If ``TRUE``, a 10 digit US number in the format xxx-xxx-xxxx will be generated. Otherwise, an international number with different format may be returned.
 
