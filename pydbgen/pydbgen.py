@@ -166,17 +166,14 @@ class pydb():
 
         """
         if type(data_type) != str:
-            print("Data type not understood. No series generated")
-            return None
+            raise ValueError("Data type must be of type str, found " + str(type(data_type)))
         try:
             num = int(num)
         except:
-            print('Number of samples not understood, terminating...')
-            return None
+            raise ValueError('Number of samples must be a positive integer, found ' + num)
 
         if num <= 0:
-            print("Please input a positive integer for the number of examples")
-            return None
+            raise ValueError('Number of samples must be a positive integer, found ' + num)
 
         import pandas as pd
         num = int(num)
@@ -209,8 +206,23 @@ class pydb():
             'license_plate': self.license_plate
         }
 
+        if data_type not in func_lookup:
+            raise ValueError("Data type must be one of " + str(list(func_lookup.keys())))
+
         datagen_func = func_lookup[data_type]
         return pd.Series((datagen_func() for _ in range(num)))
+
+    def _validate_args(self, num, fields):
+        try:
+            num = int(num)
+        except:
+            raise ValueError('Number of samples must be a positive integer, found ' + num)
+        if num <= 0:
+            raise ValueError('Number of samples must be a positive integer, found ' + num)
+
+        num_cols = len(fields)
+        if num_cols < 0:
+            raise ValueError("Please provide at least one type of data field to be generated")
 
     def gen_dataframe(self,num=10,fields=['name'], real_email=True, real_city=True, phone_simple=True, seed=None):
         """
@@ -231,40 +243,29 @@ class pydb():
         seed: Currently not used. Uses seed from the pydb class if chosen by user
 
         """
-        try:
-            num=int(num)
-        except:
-            print('Number of samples not understood, terminating...')
-            return None
-        if num <= 0:
-            print("Please input a positive integer for the number of examples")
-            return None
-        else:
-            import pandas as pd
-            from random import randint,choice
-            num_cols=len(fields)
-            if num_cols==0:
-                print("Please provide at least one type of data field to be generated")
-                return None
+        self._validate_args(num, fields)
+
+        import pandas as pd
+        from random import randint,choice
+
+        df = pd.DataFrame(data=self.gen_data_series(num,data_type=fields[0]),columns=[fields[0]])
+        for col in fields[1:]:
+            if col=='phone':
+                if phone_simple==True:
+                    df['phone-number']=self.gen_data_series(num,data_type='phone_number_simple')
+                else:
+                    df['phone-number']=self.gen_data_series(num,data_type='phone_number_full')
+            elif col=='license_plate':
+                df['license-plate']=self.gen_data_series(num,data_type=col)
+            elif col=='city' and real_city==True:
+                df['city']=self.gen_data_series(num,data_type='real_city')
             else:
-                df = pd.DataFrame(data=self.gen_data_series(num,data_type=fields[0]),columns=[fields[0]])
-                for col in fields[1:]:
-                    if col=='phone':
-                        if phone_simple==True:
-                            df['phone-number']=self.gen_data_series(num,data_type='phone_number_simple')
-                        else:
-                            df['phone-number']=self.gen_data_series(num,data_type='phone_number_full')
-                    elif col=='license_plate':
-                        df['license-plate']=self.gen_data_series(num,data_type=col)
-                    elif col=='city' and real_city==True:
-                        df['city']=self.gen_data_series(num,data_type='real_city')
-                    else:
-                        df[col]=self.gen_data_series(num,data_type=col)
+                df[col]=self.gen_data_series(num,data_type=col)
 
-                if ('email' in fields) and ('name' in fields) and (real_email==True):
-                        df['email']=df['name'].apply(self.realistic_email)
+        if ('email' in fields) and ('name' in fields) and (real_email==True):
+                df['email']=df['name'].apply(self.realistic_email)
 
-                return df
+        return df
 
     def gen_table(self,num=10,fields=['name'],db_file=None,table_name=None,primarykey=None,real_email=True, real_city=True, phone_simple=True, seed=None):
         """
@@ -289,17 +290,7 @@ class pydb():
         seed: Currently not used. Uses seed from the pydb class if chosen by user
 
         """
-        try:
-            num=int(num)
-        except:
-            print('Number of samples not understood, terminating...')
-            return None
-        if num <= 0:
-                print("Please input a positive integer for the number of examples")
-                return None
-        if len(fields)==0:
-            print("Please provide at least one type of data field to be generated")
-            return None
+        self._validate_args(num, fields)
 
         import sqlite3
         if db_file==None:
@@ -378,17 +369,8 @@ class pydb():
         seed: Currently not used. Uses seed from the pydb class if chosen by user
 
         """
-        try:
-            num=int(num)
-        except:
-            print('Number of samples not understood, terminating...')
-            return None
-        if num <= 0:
-            print("Please input a positive integer for the number of examples")
-            return None
-        if len(fields)==0:
-            print("Please provide at least one type of data to be generated")
-            return None
+        self._validate_args(num, fields)
+
         if filename==None:
             fname='NewExcel.xlsx'
         else:
