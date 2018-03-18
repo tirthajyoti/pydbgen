@@ -12,6 +12,24 @@ class pydb():
         self.seed = seed
         self.randnum = randint(1,9)
 
+        self.city_list = self._initialize_city_list()
+
+    def _initialize_city_list(self):
+        import os
+        from six import moves
+        import ssl
+
+        path = "US_Cities.txt"
+        if not os.path.isfile(path):
+            context = ssl._create_unverified_context()
+            moves.urllib.request.urlretrieve("https://raw.githubusercontent.com/tflearn/tflearn.github.io/master/resources/US_Cities.txt", path)
+
+        city_list = []
+        with open(path) as fh:
+            city_list = [str(line).strip() for line in fh.readlines()]
+
+        return city_list
+
 
     def simple_ph_num(self, seed=None):
         """
@@ -124,26 +142,11 @@ class pydb():
         Picks and returns a random entry out of 385 US cities
         seed: Currently not used. Uses seed from the pydb class if chosen by user
         '''
-        import os
-        from six import moves
-        import ssl
         import random
-        from random import randint,choice
+        from random import randint, choice
         random.seed(self.seed)
 
-        path = "US_Cities.txt"
-        if not os.path.isfile(path):
-            context = ssl._create_unverified_context()
-            moves.urllib.request.urlretrieve("https://raw.githubusercontent.com/tflearn/tflearn.github.io/master/resources/US_Cities.txt", path)
-
-        city_list = []
-        fh = open(path)
-        for line in fh.readlines():
-            city_list.append(str(line).strip())
-
-        fh.close()
-
-        return (choice(city_list))
+        return (choice(self.city_list))
 
     def gen_data_series(self,num=10,data_type='name',seed=None):
         """
