@@ -14,7 +14,7 @@ class pydb():
 
         self.fake = Faker()
         self.seed = seed
-        self.randnum = randint(1,9)
+        self.randnum = randint(1, 9)
 
         self.city_list = self._initialize_city_list()
         self.domain_list = self._initialize_email_domain_list()
@@ -51,15 +51,15 @@ class pydb():
         """
         random.seed(self.seed)
 
-        result = str(randint(1,9))
+        result = str(randint(1, 9))
         for _ in range(2):
-            result += str(randint(0,9))
+            result += str(randint(0, 9))
         result += '-'
         for _ in range(3):
-            result += str(randint(0,9))
+            result += str(randint(0, 9))
         result += '-'
         for _ in range(4):
-            result += str(randint(0,9))
+            result += str(randint(0, 9))
         return result
 
 
@@ -76,30 +76,30 @@ class pydb():
         random.seed(self.seed)
 
         if not style:
-            style = choice([1,2,3])
+            style = choice([1, 2, 3])
 
         if style == 1:
-            result = str(randint(1,9))
+            result = str(randint(1, 9))
             for _ in range(3):
-                result+=chr(randint(65,90))
+                result += chr(randint(65, 90))
             for _ in range(3):
-                result+=str(randint(1,9))
+                result += str(randint(1, 9))
             return result
         elif style == 2:
             result = ''
             for _ in range(3):
-                result += chr(randint(65,90))
+                result += chr(randint(65, 90))
             result += '-'
             for _ in range(4):
-                result += str(randint(0,9))
+                result += str(randint(0, 9))
             return result
         else:
             result = ''
             for _ in range(3):
-                result += chr(randint(65,90))
+                result += chr(randint(65, 90))
             result += '-'
             for _ in range(3):
-                result += str(randint(0,9))
+                result += str(randint(0, 9))
             return result
 
 
