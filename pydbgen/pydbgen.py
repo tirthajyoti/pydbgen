@@ -51,17 +51,13 @@ class pydb():
         """
         random.seed(self.seed)
 
-        result = str(randint(1, 9))
-        for _ in range(2):
-            result += str(randint(0, 9))
-        result += '-'
-        for _ in range(3):
-            result += str(randint(0, 9))
-        result += '-'
-        for _ in range(4):
-            result += str(randint(0, 9))
-        return result
+        phone_format = "{p1}-{p2}-{p3}"
 
+        p1 = str(randint(100, 999))
+        p2 = str(randint(0, 999)).rjust(3, '0')
+        p3 = str(randint(0, 9999)).rjust(4, '0')
+
+        return phone_format.format(p1=p1, p2=p2, p3=p3)
 
     def license_plate(self, seed=None, style=None):
         """
@@ -78,29 +74,22 @@ class pydb():
         if not style:
             style = choice([1, 2, 3])
 
+        license_place_format = "{p1}{p2}{p3}"
+
         if style == 1:
-            result = str(randint(1, 9))
-            for _ in range(3):
-                result += chr(randint(65, 90))
-            for _ in range(3):
-                result += str(randint(1, 9))
-            return result
+            p1 = str(randint(1, 9))
+            p2 = "".join([chr(randint(65, 90)) for _ in range(3)])
+            p3 = "".join([str(randint(1, 9)) for _ in range(3)])
         elif style == 2:
-            result = ''
-            for _ in range(3):
-                result += chr(randint(65, 90))
-            result += '-'
-            for _ in range(4):
-                result += str(randint(0, 9))
-            return result
+            p1 = "".join([chr(randint(65, 90)) for _ in range(3)])
+            p2 = "-"
+            p3 = "".join([str(randint(0, 9)) for _ in range(4)])
         else:
-            result = ''
-            for _ in range(3):
-                result += chr(randint(65, 90))
-            result += '-'
-            for _ in range(3):
-                result += str(randint(0, 9))
-            return result
+            p1 = "".join([chr(randint(65, 90)) for _ in range(3)])
+            p2 = "-"
+            p3 = "".join([str(randint(0, 9)) for _ in range(3)])
+
+        return license_place_format.format(p1=p1, p2=p2, p3=p3)
 
 
     def realistic_email(self, name, seed=None):
