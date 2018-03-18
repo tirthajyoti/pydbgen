@@ -146,9 +146,9 @@ class pydb():
         from random import randint, choice
         random.seed(self.seed)
 
-        return (choice(self.city_list))
+        return choice(self.city_list)
 
-    def gen_data_series(self,num=10,data_type='name',seed=None):
+    def gen_data_series(self, num=10, data_type='name', seed=None):
         """
         Returns a pandas series object with the desired number of entries and data type
 
@@ -184,104 +184,33 @@ class pydb():
         fake.seed(self.seed)
         lst = []
 
-        # Name, country, city, real (US) cities, US state, zipcode, latitude, longitude
-        if data_type=='name':
-            return pd.Series((fake.name()for _ in range(num)))
-        if data_type=='country':
-            for _ in range(num):
-                lst.append(fake.country())
-            return pd.Series(lst)
-        if data_type=='street_address':
-            for _ in range(num):
-                lst.append(fake.street_address())
-            return pd.Series(lst)
-        if data_type=='city':
-            for _ in range(num):
-                lst.append(fake.city())
-            return pd.Series(lst)
-        if data_type=='real_city':
-            for _ in range(num):
-                lst.append(self.city_real())
-            return pd.Series(lst)
-        if data_type=='state':
-            for _ in range(num):
-                lst.append(fake.state())
-            return pd.Series(lst)
-        if data_type=='zipcode':
-            for _ in range(num):
-                lst.append(fake.zipcode())
-            return pd.Series(lst)
-        if data_type=='latitude':
-            for _ in range(num):
-                lst.append(fake.latitude())
-            return pd.Series(lst)
-        if data_type=='longitude':
-            for _ in range(num):
-                lst.append(fake.longitude())
-            return pd.Series(lst)
+        func_lookup = {
+            'name': fake.name,
+            'country': fake.country,
+            'street_address': fake.street_address,
+            'city': fake.city,
+            'real_city': self.city_real,
+            'state': fake.state,
+            'zipcode': fake.zipcode,
+            'latitude': fake.latitude,
+            'longitude': fake.longitude,
+            'name_month': fake.month_name,
+            'weekday': fake.day_of_week,
+            'year': fake.year,
+            'time': fake.time,
+            'date': fake.date,
+            'ssn': fake.ssn,
+            'email': fake.email,
+            'office_email': fake.company_email,
+            'company': fake.company,
+            'job_title': fake.job,
+            'phone_number_simple': self.simple_ph_num,
+            'phone_number_full': fake.phone_number,
+            'license_plate': self.license_plate
+        }
 
-
-        # Month, weekday, year, time, date
-        if data_type=='name_month':
-            for _ in range(num):
-                lst.append(fake.month_name())
-            return pd.Series(lst)
-        if data_type=='weekday':
-            for _ in range(num):
-                lst.append(fake.day_of_week())
-            return pd.Series(lst)
-        if data_type=='year':
-            for _ in range(num):
-                lst.append(fake.year())
-            return pd.Series(lst)
-        if data_type=='time':
-            for _ in range(num):
-                lst.append(fake.time())
-            return pd.Series(lst)
-        if data_type=='date':
-            for _ in range(num):
-                lst.append(fake.date())
-            return pd.Series(lst)
-
-        # SSN
-        if data_type=='ssn':
-            for _ in range(num):
-                lst.append(fake.ssn())
-            return pd.Series(lst)
-
-        # Personal, official email
-        if data_type=='email':
-            for _ in range(num):
-                lst.append(fake.email())
-            return pd.Series(lst)
-        if data_type=='office_email':
-            for _ in range(num):
-                lst.append(fake.company_email())
-            return pd.Series(lst)
-
-        # Company, Job title
-        if data_type=='company':
-            for _ in range(num):
-                lst.append(fake.company())
-            return pd.Series(lst)
-        if data_type=='job_title':
-            for _ in range(num):
-                lst.append(fake.job())
-            return pd.Series(lst)
-
-        # Phone number, license plate (3 styles)
-        if data_type=='phone_number_simple':
-            for _ in range(num):
-                lst.append(self.simple_ph_num())
-            return pd.Series(lst)
-        if data_type=='phone_number_full':
-            for _ in range(num):
-                lst.append(fake.phone_number())
-            return pd.Series(lst)
-        if data_type=='license_plate':
-            for _ in range(num):
-                lst.append(self.license_plate())
-            return pd.Series(lst)
+        datagen_func = func_lookup[data_type]
+        return pd.Series((datagen_func() for _ in range(num)))
 
     def gen_dataframe(self,num=10,fields=['name'], real_email=True, real_city=True, phone_simple=True, seed=None):
         """
