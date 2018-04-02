@@ -11,3 +11,7 @@ __pycache__/
 # due to using tox and pytest
 .tox
 .cache
+
+# Due to using files in tests, ignoring it.
+tests/*.DB
+tests/*.xlsx
