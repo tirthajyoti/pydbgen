@@ -3,6 +3,7 @@ import random
 from random import randint, choice
 import pandas as pd
 
+
 class pydb():
 
     def __init__(self, seed=None):
@@ -26,7 +27,8 @@ class pydb():
         path = "US_Cities.txt"
         if not os.path.isfile(path):
             context = ssl._create_unverified_context()
-            moves.urllib.request.urlretrieve("https://raw.githubusercontent.com/tflearn/tflearn.github.io/master/resources/US_Cities.txt", path)
+            moves.urllib.request.urlretrieve(
+                "https://raw.githubusercontent.com/tflearn/tflearn.github.io/master/resources/US_Cities.txt", path)
 
         city_list = []
         with open(path) as fh:
@@ -91,7 +93,6 @@ class pydb():
 
         return license_place_format.format(p1=p1, p2=p2, p3=p3)
 
-
     def realistic_email(self, name, seed=None):
         '''
         Generates realistic email from first and last name and a random domain address
@@ -112,7 +113,8 @@ class pydb():
                         "{first}.{last}", "{first}_{last}",
                         "{last}_{first}", "{last}.{first}"]
         name_fmt_choice = choice(name_formats)
-        name_combo = name_fmt_choice.format(f=f_name[0], l=l_name[0], first=f_name, last=l_name)
+        name_combo = name_fmt_choice.format(
+            f=f_name[0], l=l_name[0], first=f_name, last=l_name)
 
         if choice_int < 7:
             email = name_combo + '@' + str(domain)
@@ -149,14 +151,17 @@ class pydb():
 
         """
         if type(data_type) != str:
-            raise ValueError("Data type must be of type str, found " + str(type(data_type)))
+            raise ValueError(
+                "Data type must be of type str, found " + str(type(data_type)))
         try:
             num = int(num)
         except:
-            raise ValueError('Number of samples must be a positive integer, found ' + num)
+            raise ValueError(
+                'Number of samples must be a positive integer, found ' + num)
 
         if num <= 0:
-            raise ValueError('Number of samples must be a positive integer, found ' + num)
+            raise ValueError(
+                'Number of samples must be a positive integer, found ' + num)
 
         num = int(num)
         fake = self.fake
@@ -188,7 +193,8 @@ class pydb():
         }
 
         if data_type not in func_lookup:
-            raise ValueError("Data type must be one of " + str(list(func_lookup.keys())))
+            raise ValueError("Data type must be one of " +
+                             str(list(func_lookup.keys())))
 
         datagen_func = func_lookup[data_type]
         return pd.Series((datagen_func() for _ in range(num)))
@@ -197,13 +203,16 @@ class pydb():
         try:
             num = int(num)
         except:
-            raise ValueError('Number of samples must be a positive integer, found ' + num)
+            raise ValueError(
+                'Number of samples must be a positive integer, found ' + num)
         if num <= 0:
-            raise ValueError('Number of samples must be a positive integer, found ' + num)
+            raise ValueError(
+                'Number of samples must be a positive integer, found ' + num)
 
         num_cols = len(fields)
         if num_cols < 0:
-            raise ValueError("Please provide at least one type of data field to be generated")
+            raise ValueError(
+                "Please provide at least one type of data field to be generated")
 
     def gen_dataframe(self, num=10, fields=['name'], real_email=True, real_city=True, phone_simple=True, seed=None):
         """
@@ -226,13 +235,16 @@ class pydb():
         """
         self._validate_args(num, fields)
 
-        df = pd.DataFrame(data=self.gen_data_series(num, data_type=fields[0]), columns=[fields[0]])
+        df = pd.DataFrame(data=self.gen_data_series(
+            num, data_type=fields[0]), columns=[fields[0]])
         for col in fields[1:]:
             if col == 'phone':
                 if phone_simple:
-                    df['phone-number'] = self.gen_data_series(num, data_type='phone_number_simple')
+                    df['phone-number'] = self.gen_data_series(
+                        num, data_type='phone_number_simple')
                 else:
-                    df['phone-number'] = self.gen_data_series(num, data_type='phone_number_full')
+                    df['phone-number'] = self.gen_data_series(
+                        num, data_type='phone_number_full')
             elif col == 'license_plate':
                 df['license-plate'] = self.gen_data_series(num, data_type=col)
             elif col == 'city' and real_city:
@@ -241,7 +253,7 @@ class pydb():
                 df[col] = self.gen_data_series(num, data_type=col)
 
         if ('email' in fields) and ('name' in fields) and real_email:
-                df['email'] = df['name'].apply(self.realistic_email)
+            df['email'] = df['name'].apply(self.realistic_email)
 
         return df
 
@@ -284,15 +296,17 @@ class pydb():
 
         # If primarykey is None, designate the first field as primary key
         if not primarykey:
-            table_cols = '(' + str(fields[0]) + ' varchar PRIMARY KEY NOT NULL,'
+            table_cols = '(' + str(fields[0]) + \
+                ' varchar PRIMARY KEY NOT NULL,'
             for col in fields[1:-1]:
                 table_cols += str(col) + ' varchar,'
             table_cols += str(fields[-1]) + ' varchar' + ')'
-            #print(table_cols)
+            # print(table_cols)
         else:
             pk = str(primarykey)
             if pk not in fields:
-                print("Desired primary key is not in the list of fields provided, cannot generate the table!")
+                print(
+                    "Desired primary key is not in the list of fields provided, cannot generate the table!")
                 return None
 
             table_cols = '('+str(fields[0]) + ' varchar, '
@@ -302,7 +316,7 @@ class pydb():
                 else:
                     table_cols += str(col)+' varchar, '
             table_cols += str(fields[-1])+' varchar'+')'
-            #print(table_cols)
+            # print(table_cols)
 
         if not table_name:
             table_name = 'Table1'
@@ -311,15 +325,18 @@ class pydb():
 
         str_drop_table = "DROP TABLE IF EXISTS " + str(table_name) + ';'
         c.execute(str_drop_table)
-        str_create_table = "CREATE TABLE IF NOT EXISTS " + str(table_name) + table_cols +';'
-        #print(str_create_table)
+        str_create_table = "CREATE TABLE IF NOT EXISTS " + \
+            str(table_name) + table_cols + ';'
+        # print(str_create_table)
         c.execute(str_create_table)
 
         # Create a temporary df
-        temp_df = self.gen_dataframe(num=num, fields=fields, real_email=real_email, real_city=real_city, phone_simple=phone_simple)
+        temp_df = self.gen_dataframe(
+            num=num, fields=fields, real_email=real_email, real_city=real_city, phone_simple=phone_simple)
         # Use the dataframe to insert into the table
         for i in range(num):
-            str_insert = "INSERT INTO " + table_name + " VALUES " + str(tuple(temp_df.iloc[i])) + ';'
+            str_insert = "INSERT INTO " + table_name + \
+                " VALUES " + str(tuple(temp_df.iloc[i])) + ';'
             c.execute(str_insert)
 
         # Commit the insertions and close the connection
@@ -350,6 +367,7 @@ class pydb():
         self._validate_args(num, fields)
 
         # Create a temporary dataframe
-        temp_df = self.gen_dataframe(num=num, fields=fields, real_email=real_email, real_city=real_city, phone_simple=phone_simple)
-         # Use the dataframe to write to an Excel file using Pandas built-in function
+        temp_df = self.gen_dataframe(
+            num=num, fields=fields, real_email=real_email, real_city=real_city, phone_simple=phone_simple)
+        # Use the dataframe to write to an Excel file using Pandas built-in function
         temp_df.to_excel(filename)
