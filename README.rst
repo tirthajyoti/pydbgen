@@ -3,7 +3,7 @@
 Random database/dataframe generator
 ************************************
 
-**(Tirthajyoti Sarkar, Sunnyvale, USA, March 2018)**
+`Dr. Tirthajyoti Sarkar <https://www.linkedin.com/in/tirthajyoti-sarkar-2127aa7/>`_, Sunnyvale, CA, USA, March 2018
 
 Introduction
 =============
