@@ -29,6 +29,10 @@ Installation
 =============
 You can use pip to install pydbgen: ``pip install pydbgen``
 
+Qucik test
+=============
+You can test by running pydbgen: ``python pydbgen_test.py``
+
 Usage
 =========
 Current version (1.0.0) of ``pydbgen`` comes with the following primary methods,
