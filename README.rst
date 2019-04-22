@@ -196,4 +196,4 @@ Few other auxilarry functions available in this package.
 
 Look at the article I wrote about it about applying this library
 ------------------------------------------------------------------
-`Random regression and classification problem generation with symbolic expression <https://towardsdatascience.com/random-regression-and-classification-problem-generation-with-symbolic-expression-a4e190e37b8d>`_
+`Synthetic data generation — a must-have skill for new data scientists <https://towardsdatascience.com/synthetic-data-generation-a-must-have-skill-for-new-data-scientists-915896c0c1ae>`_
