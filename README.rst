@@ -193,3 +193,7 @@ Few other auxilarry functions available in this package.
 	    105-202-1923
 	    963-459-3015
 	    309-595-3351
+
+Look at the article I wrote about it about applying this library
+------------------------------------------------------------------
+`Random regression and classification problem generation with symbolic expression <https://towardsdatascience.com/random-regression-and-classification-problem-generation-with-symbolic-expression-a4e190e37b8d>`_
