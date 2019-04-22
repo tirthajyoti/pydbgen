@@ -39,8 +39,12 @@ Current version (1.0.0) of ``pydbgen`` comes with the following primary methods,
 * ``gen_excel()``
 
 The ``gen_table()`` method allows you to build a database with as many tables as you want, filled with random data and fields of your choice. But first, you have to create an object of ``pydb`` class::
-
+	
+	```
+	import pydbgen
+	from pydbgen import pydbgen
 	myDB = pydbgen.pydb()
+	```
 
 Generate *Pandas series object*: ``gen_data_series()``
 --------------------------------------------------------
