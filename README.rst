@@ -29,7 +29,7 @@ Installation
 =============
 You can use pip to install pydbgen: ``pip install pydbgen``
 
-Qucik test
+Quick test
 =============
 You can test by running pydbgen: ``python pydbgen_test.py``
 
