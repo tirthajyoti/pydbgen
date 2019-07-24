@@ -1,9 +1,8 @@
-
 ************************************
 Random database/dataframe generator
 ************************************
 
-**(Tirthajyoti Sarkar, Sunnyvale, USA, March 2018)**
+**(Dr. Tirthajyoti Sarkar, Fremont, USA)**
 
 Introduction
 =============
@@ -39,15 +38,11 @@ Current version (1.0.0) of ``pydbgen`` comes with the following primary methods,
 * ``gen_excel()``
 
 The ``gen_table()`` method allows you to build a database with as many tables as you want, filled with random data and fields of your choice. But first, you have to create an object of ``pydb`` class::
-	
 
-	import pydbgen
-	from pydbgen import pydbgen
 	myDB = pydbgen.pydb()
 
-
-Generate *Pandas series object*: ``gen_data_series()``
---------------------------------------------------------
+``gen_data_series()``
+----------------------
 Returns a `Pandas series object <https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.html>`_ with the desired number of entries and data type. Data types available:
  
 * Name, country, city, real (US) cities, US state, zipcode, latitude, longitude
@@ -77,8 +72,8 @@ Phone number can be of two types:
 	9    1976-06-03
 	dtype: object
 
-Generate *Pandas dataframe object*: ``gen_dataframe()``
----------------------------------------------------------
+``gen_dataframe()``
+---------------------
 Generates a `Pandas dataframe <https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html>`_ filled with random entries. User can specify the number of rows and data type of the fields/columns. 
 
 * Name, country, city, real (US) cities, US state, zipcode, latitude, longitude
@@ -93,11 +88,11 @@ Customization choices are following:
 
 **Code example**::
 
-	testdf=myDB.gen_dataframe(25,fields=['name','city','phone',
-		'license_plate'],'email',real_email=True,phone_simple=True)
+	testdf=myDB.gen_dataframe(25,fields='name','city','phone',
+		'license_plate','email',real_email=True,phone_simple=True)
 
-Generate *table in a .DB or .sqlite file*: ``gen_table()``
-------------------------------------------------------------
+``gen_table()``
+------------------
 Attempts to create a table in a database (.db) file using Python's built-in SQLite engine. User can specify various data types to be included as database table fields.All data types (fields) in the SQLite table will be of VARCHAR type. Data types available:
         
 * Name, country, city, real (US) cities, US state, zipcode, latitude, longitude
@@ -114,15 +109,17 @@ Customization choices are following:
 
 ``table_name``: Name of the table, to be chosen by user. Default table name will be chosen if not specified by user.
 
+
+
 ``primarykey``: User can choose a PRIMARY KEY from among the various fields. If nothing specified, the first data field will be made PRIMARY KEY. If user chooses a field, which is not in the specified list, an error will be thrown and no table will be generated.
 
-**Code example**::
+ **Code example**::
 
 	myDB.gen_table(20,fields=['name','city','job_title','phone','company','email'],
           db_file='TestDB.db',table_name='People',primarykey='name',real_city=False)
 
-Generate Microsoft Excel: ``gen_excel()``
--------------------------------------------
+``gen_excel()``
+------------------
 Attempts to create an Excel file using Pandas excel_writer function. User can specify various data types to be included. All data types (fields) in the Excel file will be of text type. Data types available:
         
 * Name, country, city, real (US) cities, US state, zipcode, latitude, longitude
@@ -177,19 +174,3 @@ Few other auxilarry functions available in this package.
 	    OOD-124
 	    RXY-8865
 	    JZV-3326
-	    
-* **Phone number** in US 10-digit format::
-	
-	for _ in range(10):
-	    print(myDB.simple_ph_number())
-
-	    434-185-1888
-	    309-556-5282
-	    533-507-6620
-	    902-708-3026
-	    843-313-2855
-	    629-726-5514
-	    268-174-6968
-	    105-202-1923
-	    963-459-3015
-	    309-595-3351
