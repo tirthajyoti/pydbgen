@@ -2,7 +2,7 @@
 Random database/dataframe generator
 ************************************
 
-**(Tirthajyoti Sarkar, Sunnyvale, USA, March 2018)**
+**(Dr. Tirthajyoti Sarkar, Fremont, USA)**
 
 Introduction
 =============
@@ -41,8 +41,8 @@ The ``gen_table()`` method allows you to build a database with as many tables as
 
 	myDB = pydbgen.pydb()
 
-gen_data_series()
-------------------
+``gen_data_series()``
+----------------------
 Returns a `Pandas series object <https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.html>`_ with the desired number of entries and data type. Data types available:
  
 * Name, country, city, real (US) cities, US state, zipcode, latitude, longitude
@@ -72,8 +72,8 @@ Phone number can be of two types:
 	9    1976-06-03
 	dtype: object
 
-gen_dataframe()
-------------------
+``gen_dataframe()``
+---------------------
 Generates a `Pandas dataframe <https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html>`_ filled with random entries. User can specify the number of rows and data type of the fields/columns. 
 
 * Name, country, city, real (US) cities, US state, zipcode, latitude, longitude
@@ -91,7 +91,7 @@ Customization choices are following:
 	testdf=myDB.gen_dataframe(25,fields='name','city','phone',
 		'license_plate','email',real_email=True,phone_simple=True)
 
-gen_table()
+``gen_table()``
 ------------------
 Attempts to create a table in a database (.db) file using Python's built-in SQLite engine. User can specify various data types to be included as database table fields.All data types (fields) in the SQLite table will be of VARCHAR type. Data types available:
         
@@ -118,7 +118,7 @@ Customization choices are following:
 	myDB.gen_table(20,fields=['name','city','job_title','phone','company','email'],
           db_file='TestDB.db',table_name='People',primarykey='name',real_city=False)
 
-gen_excel()
+``gen_excel()``
 ------------------
 Attempts to create an Excel file using Pandas excel_writer function. User can specify various data types to be included. All data types (fields) in the Excel file will be of text type. Data types available:
         
