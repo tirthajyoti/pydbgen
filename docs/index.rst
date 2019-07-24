@@ -13,7 +13,17 @@ After all, databases break every now and then and it is safest to practice with 
 .. image:: https://imgs.xkcd.com/comics/exploits_of_a_mom.png
 
 
-While it is easy to generate random numbers or simple words for Pandas or dataframe operation learning, it is often non-trivial to generate full data tables with meaningful yet random entries of most commonly encountered fields in the world of database, such as ``name, age, birthday, credit card number, SSN, email id, physical address, company name, job title`` etc.
+While it is easy to generate random numbers or simple words for Pandas or dataframe operation learning, it is often non-trivial to generate full data tables with meaningful yet random entries of most commonly encountered fields in the world of database, such as 
+
+- name, 
+- age,
+- birthday, 
+- credit card number, 
+- SSN, 
+- email id, 
+- physical address, 
+- company name, 
+- job title,
 
 This Python package generates a random database ``TABLE`` (or a Pandas dataframe, or an Excel file) based on user's choice of data types (database fields). User can specify the number of samples needed. One can also designate a **"PRIMARY KEY"** for the database table. Finally, the ``TABLE`` is inserted into a new or existing database file of user's choice.
 
