@@ -2,7 +2,7 @@
 Random database/dataframe generator
 ************************************
 
-**(Dr. Tirthajyoti Sarkar, Fremont, USA)**
+Authored and maintained by `Dr. Tirthajyoti Sarkar, Fremont, USA <https://www.linkedin.com/in/tirthajyoti-sarkar-2127aa7/>`_
 
 Introduction
 =============
@@ -13,7 +13,7 @@ After all, databases break every now and then and it is safest to practice with 
 .. image:: https://imgs.xkcd.com/comics/exploits_of_a_mom.png
 
 
-While it is easy to generate random numbers or simple words for Pandas or dataframe operation learning, it is often non-trivial to generate full data tables with meaningful yet random entries of most commonly encountered fields in the world of database, such as 
+While it is easy to generate random numbers or simple words for Pandas or dataframe operation learning, it is often **non-trivial to generate full data tables with meaningful yet random entries of most commonly encountered fields in the world of database**, such as 
 
 - name, 
 - age,
@@ -38,7 +38,16 @@ Here is the link if you want to look up more about ``Faker`` package,
 
 Installation
 =============
-You can use pip to install pydbgen: ``pip install pydbgen``
+(On Linux and Windows) You can use ``pip`` to install ``pydbgen``::
+
+	pip install pydbgen
+
+(On Mac OS), first install pip, ::
+	
+	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+	python get-pip.py
+
+Then proceed as above.
 
 Usage
 =========
@@ -94,9 +103,9 @@ Generates a `Pandas dataframe <https://pandas.pydata.org/pandas-docs/stable/gene
 * Company, Job title, phone number, license plate
 Customization choices are following:
 
-- **real_email**: If ``TRUE`` and if a person's name is also included in the fields, a realistic email will be generated corresponding to the name of the person. For example, ``Tirtha Sarkar`` name with this choice enabled, will generate emails like ``TSarkar21@gmail.com`` or ``Sarkar.Tirtha@att.net``.
-- **real_city**: If ``TRUE``, a real US city's name will be picked up from a list (included as a text data file with the installation package). Otherwise, a fictitious city name will be generated.
-- **phone_simple**: If ``TRUE``, a 10 digit US number in the format xxx-xxx-xxxx will be generated. Otherwise, an international number with different format may be returned.
+- ``real_email``: If ``True`` and if a person's name is also included in the fields, a realistic email will be generated corresponding to the name of the person. For example, ``Tirtha Sarkar`` name with this choice enabled, will generate emails like ``TSarkar21@gmail.com`` or ``Sarkar.Tirtha@att.net``.
+- ``real_city``: If ``True``, a real US city's name will be picked up from a list (included as a text data file with the installation package). Otherwise, a fictitious city name will be generated.
+- ``phone_simple``: If ``True``, a 10 digit US number in the format xxx-xxx-xxxx will be generated. Otherwise, an international number with different format may be returned.
 
 **Code example**::
 
@@ -108,25 +117,23 @@ Customization choices are following:
 
 ``gen_table()``
 ------------------
-Attempts to create a table in a database (.db) file using Python's built-in SQLite engine. User can specify various data types to be included as database table fields.All data types (fields) in the SQLite table will be of VARCHAR type. Data types available:
+Attempts to create a table in a database (.db) file using Python's built-in ``SQLite`` engine. User can specify various data types to be included as database table fields. 
+
+All data types (fields) in the SQLite table will be of VARCHAR type. Data types available:
         
 * Name, country, city, real (US) cities, US state, zipcode, latitude, longitude
 * Month, weekday, year, time, date
 * Personal email, official email, SSN 
 * Company, Job title, phone number, license plate
+
 Customization choices are following:
 
-- **real_email**: If ``TRUE`` and if a person's name is also included in the fields, a realistic email will be generated corresponding to the name of the person. For example, ``Tirtha Sarkar`` name with this choice enabled, will generate emails like ``TSarkar21@gmail.com`` or ``Sarkar.Tirtha@att.net``.
-- **real_city**: If ``TRUE``, a real US city's name will be picked up from a list (included as a text data file with the installation package). Otherwise, a fictitious city name will be generated.
-- **phone_simple**: If ``TRUE``, a 10 digit US number in the format xxx-xxx-xxxx will be generated. Otherwise, an international number with different format may be returned.
-
-``db_file``: Name of the database where the ``TABLE`` will be created or updated. Default database name will be chosen if not specified by user.
-
-``table_name``: Name of the table, to be chosen by user. Default table name will be chosen if not specified by user.
-
-
-
-``primarykey``: User can choose a PRIMARY KEY from among the various fields. If nothing specified, the first data field will be made PRIMARY KEY. If user chooses a field, which is not in the specified list, an error will be thrown and no table will be generated.
+- ``real_email``: If ``True`` and if a person's name is also included in the fields, a realistic email will be generated corresponding to the name of the person. For example, ``Tirtha Sarkar`` name with this choice enabled, will generate emails like ``TSarkar21@gmail.com`` or ``Sarkar.Tirtha@att.net``.
+- ``real_city``: If ``True``, a real US city's name will be picked up from a list (included as a text data file with the installation package). Otherwise, a fictitious city name will be generated.
+- ``phone_simple``: If ``True``, a 10 digit US number in the format xxx-xxx-xxxx will be generated. Otherwise, an international number with different format may be returned.
+- ``db_file``: Name of the database where the ``TABLE`` will be created or updated. Default database name will be chosen if not specified by user.
+- ``table_name``: Name of the table, to be chosen by user. Default table name will be chosen if not specified by user.
+- ``primarykey``: User can choose a PRIMARY KEY from among the various fields. If nothing specified, the first data field will be made PRIMARY KEY. If user chooses a field, which is not in the specified list, an error will be thrown and no table will be generated.
 
  **Code example**::
 
@@ -146,11 +153,10 @@ Attempts to create an Excel file using Pandas excel_writer function. User can sp
 * Company, Job title, phone number, license plate
 Customization choices are following:
 
-- **real_email**: If ``TRUE`` and if a person's name is also included in the fields, a realistic email will be generated corresponding to the name of the person. For example, ``Tirtha Sarkar`` name with this choice enabled, will generate emails like ``TSarkar21@gmail.com`` or ``Sarkar.Tirtha@att.net``.
-- **real_city**: If ``TRUE``, a real US city's name will be picked up from a list (included as a text data file with the installation package). Otherwise, a fictitious city name will be generated.
-- **phone_simple**: If ``TRUE``, a 10 digit US number in the format xxx-xxx-xxxx will be generated. Otherwise, an international number with different format may be returned.
-
-``filename``: Name of the Excel file to be created or updated. Default file name will be chosen if not specified by user.
+- ``real_email``: If ``True`` and if a person's name is also included in the fields, a realistic email will be generated corresponding to the name of the person. For example, ``Tirtha Sarkar`` name with this choice enabled, will generate emails like ``TSarkar21@gmail.com`` or ``Sarkar.Tirtha@att.net``.
+- ``real_city``: If ``True``, a real US city's name will be picked up from a list (included as a text data file with the installation package). Otherwise, a fictitious city name will be generated.
+- ``phone_simple``: If ``True``, a 10 digit US number in the format xxx-xxx-xxxx will be generated. Otherwise, an international number with different format may be returned.
+- ``filename``: Name of the Excel file to be created or updated. Default file name will be chosen if not specified by user.
 
 **Code example**::
 
