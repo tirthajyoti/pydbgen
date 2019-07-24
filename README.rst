@@ -117,12 +117,15 @@ Customization choices are following:
 
 ``gen_table()``
 ------------------
-Attempts to create a table in a database (.db) file using Python's built-in SQLite engine. User can specify various data types to be included as database table fields.All data types (fields) in the SQLite table will be of VARCHAR type. Data types available:
+Attempts to create a table in a database (.db) file using Python's built-in ``SQLite`` engine. User can specify various data types to be included as database table fields. 
+
+All data types (fields) in the SQLite table will be of VARCHAR type. Data types available:
         
 * Name, country, city, real (US) cities, US state, zipcode, latitude, longitude
 * Month, weekday, year, time, date
 * Personal email, official email, SSN 
 * Company, Job title, phone number, license plate
+
 Customization choices are following:
 
 - ``real_email``: If ``True`` and if a person's name is also included in the fields, a realistic email will be generated corresponding to the name of the person. For example, ``Tirtha Sarkar`` name with this choice enabled, will generate emails like ``TSarkar21@gmail.com`` or ``Sarkar.Tirtha@att.net``.
