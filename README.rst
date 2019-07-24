@@ -13,7 +13,7 @@ After all, databases break every now and then and it is safest to practice with 
 .. image:: https://imgs.xkcd.com/comics/exploits_of_a_mom.png
 
 
-While it is easy to generate random numbers or simple words for Pandas or dataframe operation learning, it is often non-trivial to generate full data tables with meaningful yet random entries of most commonly encountered fields in the world of database, such as 
+While it is easy to generate random numbers or simple words for Pandas or dataframe operation learning, it is often **non-trivial to generate full data tables with meaningful yet random entries of most commonly encountered fields in the world of database**, such as 
 
 - name, 
 - age,
