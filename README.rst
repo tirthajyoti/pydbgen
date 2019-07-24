@@ -100,8 +100,11 @@ Customization choices are following:
 
 **Code example**::
 
-	testdf=myDB.gen_dataframe(25,fields='name','city','phone',
-		'license_plate','email',real_email=True,phone_simple=True)
+	testdf=myDB.gen_dataframe(
+	25,fields='name','city','phone',
+	'license_plate','email',
+	real_email=True,phone_simple=True
+	)
 
 ``gen_table()``
 ------------------
@@ -127,8 +130,11 @@ Customization choices are following:
 
  **Code example**::
 
-	myDB.gen_table(20,fields=['name','city','job_title','phone','company','email'],
-          db_file='TestDB.db',table_name='People',primarykey='name',real_city=False)
+	myDB.gen_table(
+	20,fields=['name','city','job_title','phone','company','email'],
+        db_file='TestDB.db',table_name='People',
+	primarykey='name',real_city=False
+	)
 
 ``gen_excel()``
 ------------------
