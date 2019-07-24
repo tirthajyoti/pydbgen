@@ -47,7 +47,7 @@ Installation
 	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 	python get-pip.py
 
-Then process as above.
+Then proceed as above.
 
 Usage
 =========
@@ -132,8 +132,6 @@ Customization choices are following:
 ``db_file``: Name of the database where the ``TABLE`` will be created or updated. Default database name will be chosen if not specified by user.
 
 ``table_name``: Name of the table, to be chosen by user. Default table name will be chosen if not specified by user.
-
-
 
 ``primarykey``: User can choose a PRIMARY KEY from among the various fields. If nothing specified, the first data field will be made PRIMARY KEY. If user chooses a field, which is not in the specified list, an error will be thrown and no table will be generated.
 
