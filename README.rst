@@ -2,7 +2,7 @@
 Random database/dataframe generator
 ************************************
 
-**(Dr. Tirthajyoti Sarkar, Fremont, USA)**
+Authored and maintained by `Dr. Tirthajyoti Sarkar, Fremont, USA <https://www.linkedin.com/in/tirthajyoti-sarkar-2127aa7/>`_
 
 Introduction
 =============
@@ -38,7 +38,16 @@ Here is the link if you want to look up more about ``Faker`` package,
 
 Installation
 =============
-You can use pip to install pydbgen: ``pip install pydbgen``
+(On Linux and Windows) You can use ``pip`` to install ``pydbgen``::
+
+	pip install pydbgen
+
+(On Mac OS), first install pip, ::
+	
+	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+	python get-pip.py
+
+Then process as above.
 
 Usage
 =========
