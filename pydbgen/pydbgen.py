@@ -12,6 +12,7 @@ class pydb:
         """
         from faker import Faker
 
+        self.faker = Faker
         self.fake = Faker()
         self.seed = seed
         self.randnum = randint(1, 9)
@@ -176,7 +177,7 @@ class pydb:
 
         num = int(num)
         fake = self.fake
-        fake.seed(self.seed)
+        self.faker.seed(self.seed)
 
         func_lookup = {
             "name": fake.name,
