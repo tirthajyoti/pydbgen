@@ -163,9 +163,9 @@ Customization choices are following:
 	myDB.gen_excel(15,fields=['name','year','email','license_plate'],
 		filename='TestExcel.xlsx',real_email=True)
 
-Other auxilarry methods available
+Other auxiliary methods available
 ----------------------------------
-Few other auxilarry functions available in this package.
+Few other auxiliary functions available in this package.
 
 * **Realistic email** with a given name as seed::
 	
